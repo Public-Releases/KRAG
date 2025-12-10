@@ -1,4 +1,4 @@
-# MedRAG: Medical Retrieval-Augmented Generation
+# OmniRAG: Medical Retrieval-Augmented Generation
 
 A medical diagnosis system that combines Retrieval-Augmented Generation (RAG) with Knowledge Graph (KG) reasoning to provide accurate medical diagnoses.
 
@@ -12,7 +12,7 @@ A medical diagnosis system that combines Retrieval-Augmented Generation (RAG) wi
   - [3. Configure API Keys](#3-configure-api-keys)
   - [4. Preprocess Data](#4-preprocess-data)
 - [Usage](#usage)
-  - [Run MedRAG on DDXPlus](#run-medrag-on-ddxplus)
+  - [Run OmniRAG on DDXPlus](#run-OmniRAG-on-ddxplus)
   - [Run Ablation Studies](#run-ablation-studies)
   - [Evaluate Responses](#evaluate-responses)
   - [Analyze Results](#analyze-results)
@@ -21,12 +21,12 @@ A medical diagnosis system that combines Retrieval-Augmented Generation (RAG) wi
 
 ## Overview
 
-MedRAG is a medical diagnosis system that:
+OmniRAG is a medical diagnosis system that:
 - Retrieves similar patient cases using semantic embeddings
 - Leverages a medical knowledge graph for structured reasoning
 - Generates comprehensive diagnostic reports using LLMs
 
-![MedRAG System Overview](omniRAG.png)
+![OmniRAG System Overview](omniRAG.png)
 
 
 
@@ -51,7 +51,7 @@ This project supports the DDXPlus dataset for differential diagnosis tasks.
 2. Extract it to the project root directory:
    ```bash
    # Your directory structure should look like:
-   MedRAG/
+   OmniRAG/
    └── DDXPlus/
        ├── release_train_patients.csv
        ├── release_validate_patients.csv
@@ -105,7 +105,7 @@ google_api_key = "your-google-api-key-here"
 
 #### Preprocess DDXPlus Dataset
 
-Convert DDXPlus CSV files into MedRAG format:
+Convert DDXPlus CSV files into OmniRAG format:
 
 ```bash
 # Process all splits (train, val, test)
@@ -135,9 +135,9 @@ python convert_csv_to_json.py
 
 ## Usage
 
-### Run MedRAG on DDXPlus
+### Run OmniRAG on DDXPlus
 
-Run the full MedRAG pipeline on DDXPlus dataset:
+Run the full OmniRAG pipeline on DDXPlus dataset:
 
 ```bash
 # Quick test (10 samples, ~2-5 minutes)
@@ -191,7 +191,7 @@ python run_ablation.py --split test --mode rag_only --topk 1 --max_samples 100
 # KG only (without RAG)
 python run_ablation.py --split test --mode kg_only --max_samples 100
 
-# Full MedRAG (RAG + KG)
+# Full OmniRAG (RAG + KG)
 python run_ablation.py --split test --mode full --topk 1 --max_samples 100
 ```
 
@@ -202,7 +202,7 @@ python run_ablation.py --split test --mode full --topk 1 --max_samples 100
   - `baseline`: No RAG, no KG
   - `rag_only`: RAG without KG
   - `kg_only`: KG without RAG
-  - `full`: Full MedRAG (RAG + KG)
+  - `full`: Full OmniRAG (RAG + KG)
 - `--model`: LLM model (default: `local/llama-3.1-8b`)
 - `--topk`: Number of documents to retrieve (required for `rag_only` and `full`)
 - `--max-samples`: Maximum number of samples
@@ -275,8 +275,8 @@ OmniRAG/
 │   └── medrag_kg_ddxplus.xlsx    # Baseline KG
 ├── results/                          # Experiment results
 │   └── {split}/{timestamp}/         # Results organized by split and timestamp
-├── main_MedRAG.py                   # Core MedRAG functions
-├── run_ddxplus.py                   # Main script to run MedRAG on DDXPlus
+├── main_MedRAG.py                   # Core OmniRAG functions
+├── run_ddxplus.py                   # Main script to run OmniRAG on DDXPlus
 ├── run_ablation.py                  # Ablation study script
 ├── preprocess_ddxplus.py            # DDXPlus preprocessing script
 ├── evaluate_responses.py            # Response evaluation script
@@ -296,7 +296,7 @@ pip install -r requirements.txt
 # 2. Preprocess
 python preprocess_ddxplus.py
 
-# 3. Run MedRAG
+# 3. Run OmniRAG
 python run_ddxplus.py --split test --max_samples 10
 
 # 4. Run Ablation
